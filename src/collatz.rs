@@ -1,3 +1,6 @@
+// calculate the lengths of shortened ((3n+1)/2 instead of (3n+1)) paths of Collatz conjecture
+// between 2 and SIZE, giving a collatz_lenghts vector
+
 const SIZE: usize = 10001;
 
 fn calculate_collatz_length(n: usize, collatz_lengths: &mut Vec<usize>) {

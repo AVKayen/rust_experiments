@@ -2,5 +2,10 @@
 name = "rust_experiments"
 version = "0.1.0"
 edition = "2021"
+default-run = "collatz"
 
 [dependencies]
+
+[[bin]]
+name = "collatz"
+path = "src/collatz.rs"
