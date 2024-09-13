@@ -1,6 +1,10 @@
 // calculate the lengths of shortened ((3n+1)/2 instead of (3n+1)) paths of Collatz conjecture
 // between 2 and SIZE, giving a collatz_lenghts vector
 
+// later, solution to https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=36
+
+use std::{io::prelude::*, io};
+
 const SIZE: usize = 10001;
 
 fn calculate_collatz_length(n: usize, collatz_lengths: &mut Vec<usize>) {
@@ -12,7 +16,7 @@ fn calculate_collatz_length(n: usize, collatz_lengths: &mut Vec<usize>) {
         if x % 2 == 0 {
             x /= 2;
         } else {
-            x = (3 * x + 1) / 2;
+            x = 3 * x + 1;
         }
 
         if collatz_lengths.len() < x + 1 {
@@ -34,5 +38,18 @@ fn main() {
 
     collatz_lengths.truncate(SIZE);
 
-    println!("{}", collatz_lengths[2137])
+    for line in io::stdin().lock().lines() {
+        let line_str = line.unwrap();
+        let mut split = line_str.split_whitespace();
+        let a: usize = split.next().unwrap().parse().unwrap();
+        let b: usize = split.next().unwrap().parse().unwrap();
+
+        let mut m: usize = 0;
+        for i in a..b {
+            if collatz_lengths[i] > m {
+                m = collatz_lengths[i];
+            }
+        }
+        println!("{a} {b} {m}")
+    }
 }
